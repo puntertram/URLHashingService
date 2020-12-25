@@ -15,5 +15,6 @@ module.exports = {
     "auth": {
         "host": "localhost",
         "port": 8000
-    }
+    },
+    "urlHashDomain": "tinyurl"
 }
