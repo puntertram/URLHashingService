@@ -6,8 +6,9 @@ let app = express();
 
 app.use('/api/url/', require('./app/index'));
 app.use('/api/auth/', require('./authentication/index'));
-app.use(require('/api/db/', './db/index'));
-app.use(require('/api/kgs/', './kgs/index'));
+app.use('/api/db/', require('./db/index'));
+app.use('/api/kgs/', require('./kgs/index'));
+
 
 
 
