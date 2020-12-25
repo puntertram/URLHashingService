@@ -11,9 +11,9 @@ router.post("/shorten/", (req, resp) => {
     try {
         axios.get(util.generate_url(config.auth.host, config.auth.port, "/api/auth/metric_quota")).then((res) => {
             if(res.status == 200) {
-                let quota = body.quota;
-                let used_calls = body.used_calls;
-                if(quota == used_calls) {
+                let quota = body.quota.write;
+                let used = body.used.write;
+                if(quota == used) {
                     resp.status("401").json({
                         "error": "Quota full. Please contact the desk to increase the quota of REST calls."
                     })
@@ -55,6 +55,43 @@ router.post("/shorten/", (req, resp) => {
         .catch((err) => {
             throw err;
         })
+    } catch(e) {
+
+    }
+})
+
+router.get("/:shortenedUrl", (req, res) => {
+    try {
+        if(config.options.useAnalytics) {
+
+        } else {
+    
+        }
+        let approachDB = false;
+        if(config.options.useCache) {
+    
+        } else {
+            approachDB = true;
+        }
+        if(approachDB) {
+            axios.get(util.generate_url(config.db.host, config.db.port, "/find_url/" + req.params["shortenedUrl"])).then((res) => {
+                if(res.status == 200) {
+                    if(config.options.useCache) {
+                        //update the cache
+
+                    }
+
+                    res.status(200).json({
+                        "msg": "Find original URL successful",
+                        "url": res.data.url
+                    })
+                } else {
+                    throw JSON.parse(res.data).error;
+                }
+            }).catch((err) => {
+                throw err;
+            })
+        }
     } catch(e) {
 
     }
