@@ -1,0 +1,23 @@
+{
+  "name": "urlhashingservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Puneethnaik/URLHashingService.git"
+  },
+  "author": "Puneeth N Naik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Puneethnaik/URLHashingService/issues"
+  },
+  "homepage": "https://github.com/Puneethnaik/URLHashingService#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
