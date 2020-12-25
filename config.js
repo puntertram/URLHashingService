@@ -16,5 +16,9 @@ module.exports = {
         "host": "localhost",
         "port": 8000
     },
+    "options": {
+        "useCache": false,
+        "useAnalytics": false
+    },
     "urlHashDomain": "tinyurl"
 }
