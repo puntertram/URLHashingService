@@ -33,7 +33,9 @@ router.post("/increment/used/write", async (req, res) => {
     try {
         let apiKey = req.query["apiKey"];
         let result = await sqlCalls.incrementWriteUsed(apiKey);
-        res.json(result);
+        res.json({
+            "msg": "Increase the used write of the account"
+        });
     }catch(e) {
         res.status(401).json(JSON.stringify({
             "error": JSON.stringify(e)

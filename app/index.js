@@ -6,6 +6,7 @@ let router = express.Router();
 let config = require("../config");
 let util = require("../util");
 let moment = require("moment");
+let MicroServiceFailedException = require("../exceptions/MicroServiceFailedException").MicroServiceFailedException;
 /** 
  * 
 */
@@ -28,7 +29,7 @@ router.post("/shorten", async (req, resp) => {
                 let kgsKeyResponse = await fetch(util.generate_url(config.servers.kgs.host, "/api/kgs/key", config.servers.kgs.port));
                 let kgsKeyResponseJson = await kgsKeyResponse.json();
                 if(kgsKeyResponse.status == 200) {
-                    let key = body.key;
+                    let key = kgsKeyResponseJson.key;
                     let dbInsertRecordResponse = await fetch(util.generate_url(config.servers.kgs.host, "/api/db/insert_record?apiKey=" + apiKey, config.servers.db.port), {
                         method: 'post',
                         body:    JSON.stringify({
@@ -71,7 +72,7 @@ router.post("/shorten", async (req, resp) => {
             })
         } else {
             resp.status(500).json({
-                "error": "Some internal error occured."
+                "error": e.message
             });
         }
     }
