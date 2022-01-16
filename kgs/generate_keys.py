@@ -21,7 +21,7 @@ def getBase64(count):
 try:
     connection = pymysql.connect(
         host='localhost',
-        port=3308,
+        port=3310,
         password=os.environ["DB_PASSWORD"],
         user=os.environ["DB_USER"],
         db='kgs_db'

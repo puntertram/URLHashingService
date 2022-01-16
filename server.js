@@ -3,13 +3,14 @@ const config = require("./config");
 const bodyParser = require("body-parser");
 const redis = require("redis");
 const redisClient = null;
+
 if(config.servers.options.useCache) {
     redisClient = redis.createClient();
+    redisClient.on("error", (error) => {
+        console.error(error);
+        
+    })
 }
-redisClient.on("error", (error) => {
-    console.error(error);
-    
-})
 
 let app = express();
 app.use(bodyParser.json());
@@ -31,8 +32,6 @@ if(server_type) {
     console.error("You should mention the type of the server to launch(app, auth, db, kgs)");
     process.exit();
 }
-
-
 
 app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);

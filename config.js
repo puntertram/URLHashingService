@@ -26,17 +26,17 @@ module.exports = {
         "auth": {
             "host": "localhost",
             "schema": "auth_db",
-            "port": 3308
+            "port": 3310
         },
         "kgs": {
             "host": "localhost",
             "schema": "kgs_db",
-            "port": 3308
+            "port": 3310
         },
         "db": {
             "host": "localhost",
             "schema": "url_hash_db",
-            "port": 3308
+            "port": 3310
         }
     },
     "cache": {
